@@ -23,8 +23,8 @@ import { universalResultsConfig } from '../config/universalResultsConfig';
 import UniversalResults from '../components/UniversalResults';
 import Navigation from '../components/Navigation';
 import { answersHeadlessConfig } from '../config/answersHeadlessConfig';
-import Header from "../components/commons/header";
-import Footer from "../components/commons/footer";
+import Header from "../components/commons/Header";
+import Footer from "../components/commons/Footer";
 
 
 export const config: TemplateConfig = {
