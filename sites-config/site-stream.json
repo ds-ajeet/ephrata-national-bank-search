@@ -1,0 +1,19 @@
+{
+  "$id": "site-entity",
+  "filter": {
+    "entityIds": ["header-and-footer"]
+  },
+  "source": "knowledgeGraph",
+  "fields": [
+    "id",
+    "uid",
+    "meta",
+    "c_upperPart",
+    "c_lowerPart",
+    "c_housingLender",
+    "c_office"
+  ],
+  "localization": {
+    "locales": ["en"]
+  }
+}
