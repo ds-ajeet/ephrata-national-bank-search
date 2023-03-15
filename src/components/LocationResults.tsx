@@ -1,53 +1,60 @@
 import classNames from 'classnames';
 import { useContext, useEffect, useRef } from 'react';
-import { SectionConfig } from '../models/sectionComponent';
 import AlternativeVerticals from './AlternativeVerticals';
 import { StandardCard } from './cards/StandardCard';
 import { LocationContext } from './LocationContext';
 import { LocationActionTypes } from './locationReducers';
-import Mapbox, { MapLocationData } from './mapbox/Mapbox';
+import { MapLocationData } from './mapbox/Mapbox';
 import { VerticalResultsDisplay } from './VerticalResults';
 import MapGoogle from "./mapbox/MapGoogle";
 import * as React from 'react';
-import { useSearchState } from '@yext/search-headless-react';
+import { Result, useSearchState } from '@yext/search-headless-react';
+import { CardConfig } from '../models/cardComponent';
 
-
-type LocationResultsProps = SectionConfig
-
-export default function LocationResults(props: LocationResultsProps): JSX.Element {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+type props = {
+  results?: Result[],
+  cardConfig?: CardConfig,
+  verticalKey: string,
+}
+export default function LocationResults(data :props){
   const { state, dispatch } = useContext(LocationContext);
-  const results = useSearchState((state) => state.vertical.results) || [];
+  const entityResults = data.results ? data.results : useSearchState((state)=> state.vertical.results);
   const screenSize = 'xl';
-
-  const { cardConfig } = props;
+  const { cardConfig } = data;
   const cardComponent = cardConfig?.CardComponent || StandardCard;
+  // const newCardComponent = data.cardConfig ? data.cardConfig : StandardCard;
   const refLcation = useRef<HTMLDivElement>(null);
-
   useEffect(() => {
     const mapLocations: MapLocationData[] = [];
-    for (const result of results) {
-      const location = result.rawData as unknown as MapLocationData;
-      if (result.id && location.yextDisplayCoordinate) {
-        mapLocations.push({
-          id: result.id ?? '',
-          name: location.name,
-          address: location.address,
-          yextDisplayCoordinate: {
-            latitude: location.yextDisplayCoordinate.latitude,
-            longitude: location.yextDisplayCoordinate.longitude,
-          },
-        });
+    if (entityResults !== undefined) {
+      for (let result = 0; result < entityResults?.length; result++) {
+        const enities = entityResults[result];
+        const location = enities.rawData as unknown as MapLocationData;
+        if (enities.id && location.yextDisplayCoordinate) {
+          mapLocations.push({
+            id: enities.id ?? "",
+            name: location.name,
+            address: location.address,
+            yextDisplayCoordinate: {
+              latitude: location.yextDisplayCoordinate.latitude,
+              longitude: location.yextDisplayCoordinate.longitude,
+            },
+          });
+        }
       }
     }
-    dispatch({ type: LocationActionTypes.SetMapLocations, payload: { mapLocations } });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [results]);
+    dispatch({
+      type: LocationActionTypes.SetMapLocations,
+      payload: { mapLocations },
+    });
+  }, [entityResults]);
+
   const googleMapsConfig = {
     centerLatitude: 26.8894208,
     centerLongitude: 75.8349824,
     googleMapsApiKey: "AIzaSyDZNQlSlEIkFAct5VzUtsP4dSbvOr2bE18"
   };
+
   const renderMap = () => {
     if (!state.mapLocations) return null;
 
@@ -55,24 +62,12 @@ export default function LocationResults(props: LocationResultsProps): JSX.Elemen
       apiKey={googleMapsConfig.googleMapsApiKey}
       centerLatitude={googleMapsConfig.centerLatitude}
       centerLongitude={googleMapsConfig.centerLongitude}
-      defaultZoom={0}
+      defaultZoom={4}
       showEmptyMap={true}
       refLcation={refLcation}
     />;
   };
-  // const mobileMap = () => {
-  //   if (!state.mapLocations) return null;
-
-  //   return <Maps
-  //   apiKey={googleMapsConfig.googleMapsApiKey}
-  //   centerLatitude={googleMapsConfig.centerLatitude}
-  //   centerLongitude={googleMapsConfig.centerLongitude}
-  //   defaultZoom={0}
-  //   showEmptyMap={true}
-  //   refLcation={refLcation}
-  // />;
-  // };
-
+  
   return (
     <div className="flex">
       <div
@@ -84,11 +79,12 @@ export default function LocationResults(props: LocationResultsProps): JSX.Elemen
         style={{ maxHeight: '580px' }}>
         {state.mapLocations && state.mapLocations.length > 0 ? (
           <VerticalResultsDisplay
-            results={results}
-            CardComponent={cardComponent}
-            {...(cardConfig && { cardConfig })}
-            customCssClasses={{ container: 'px-4 sm:px-0' }}
-          />
+          results={entityResults}
+          CardComponent={cardComponent}
+          {...(cardConfig && { cardConfig })}
+          customCssClasses={{ container: 'px-4 sm:px-0' }}
+        />
+
         ) : state.noGymsMessage ? (
           <div className="flex h-full items-center justify-center">
             <span className="font-heading text-xl">{state.noGymsMessage}</span>
@@ -117,4 +113,5 @@ export default function LocationResults(props: LocationResultsProps): JSX.Elemen
       </div>
     </div>
   );
+
 }

@@ -107,3 +107,11 @@
 .SocialMediaLinks{
   margin-left: 100px;
 }
+
+.faq-block .faq-content{
+  display: none;
+}
+
+.opened .faq-content{
+  display: block;
+}

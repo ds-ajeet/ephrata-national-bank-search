@@ -25,7 +25,7 @@ export const universalResultsConfig: UniversalResultsConfig = {
     label: 'FAQs',
     viewAllButton: true,
     cardConfig: {
-      CardComponent: ArticlesCard,
+      CardComponent: FaqCard,
       showOrdinal: false
     }
   }

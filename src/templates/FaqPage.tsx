@@ -34,6 +34,7 @@ import PageLayout from "../components/PageLayout";
 import { answersHeadlessConfig } from '../config/answersHeadlessConfig';
 import Header from "../components/commons/Header";
 import Footer from "../components/commons/Footer";
+import { FaqCard } from "../components/cards/FaqCards";
 
 export const config: TemplateConfig = {
     stream: {
@@ -109,7 +110,7 @@ console.log(_site,"_site");
             <SpellCheck />
             <ResultsCount />
             <AppliedFilters hiddenFields={['builtin.entityType']} />
-            <VerticalResults CardComponent={ArticlesCard} />
+            <VerticalResults CardComponent={FaqCard} />
             <LocationBias />
           </div>
           <Pagination />

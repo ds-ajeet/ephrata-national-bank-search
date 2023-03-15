@@ -2,6 +2,7 @@ import { useSearchActions } from "@yext/search-headless-react";
 import { useContext } from 'react';
 import { CardProps } from '../../models/cardComponent';
 import { useEffect, useState } from "react";
+import * as React from "react";
 
 //prettier-ignore
 export interface TrainerCardConfig {
@@ -79,7 +80,6 @@ export function FaqCard(props: TrainerCardProps): JSX.Element {
     return <div className={cssClasses.descriptionContainer}>{quote}</div>;
   }
 
-  const isVertical = useSearchActions((s) => s.meta.searchType) === 'vertical';
 
 
   /**
@@ -108,7 +108,7 @@ export function FaqCard(props: TrainerCardProps): JSX.Element {
   return (
     <>
       <div className={'faq-block ' + trainer.id + ' ' + faqClass} >
-        <div onClick={(e) => isShowContent(e, trainer.id)} >{renderName(trainer.name)}</div>
+        <div onClick={(e) => isShowContent(e, trainer.id)} className="FaqQuestion">{renderName(trainer.name)}</div>
         <div className={cssClasses.ctaButton + ' faq-content'}>
           {renderQuote(trainer.answer)}
           <a href={FaqLandingPage}>
