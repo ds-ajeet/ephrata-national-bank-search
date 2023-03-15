@@ -75,6 +75,33 @@ export const getHeadConfig: GetHeadConfig<
       title: `Ephrata National Bank | AS`,
       charset: "UTF-8",
       viewport: "width=device-width, initial-scale=1",
+      tags : [
+        {
+          type: "link",
+          attributes: {
+              rel: "icon",
+              type: "image/x-icon",
+              href: `https://www.epnb.com/wp-content/themes/epnb/img/logo/logo-full-no-tag.svg`,
+          },
+      },
+      // Favicon
+      // Meta Title and Description
+      {
+          type: "meta",
+          attributes: {
+              name: "title",
+              content: `Answers | Ephrata National Bank`,
+          },
+      },
+      {
+          type: "meta",
+          attributes: {
+              name: "description",
+              content: `Answers | Ephrata National Bank`,
+          },
+      },
+      // Meta Title and Description
+      ]
     };
   };
 
