@@ -28,9 +28,11 @@ export default function LocationResults(data :props){
   const aleternateVerticals = useSearchState(
     (state) => state.vertical.noResults?.alternativeVerticals
   );
+  const isLoading = useSearchState(state => state.searchStatus.isLoading);
+  console.log(isLoading,"isLoading");
    const filterVariable = aleternateVerticals?.filter(filtredResulta => filtredResulta.resultsCount > 0) || [];
     const filterVariableLength = filterVariable.length;
-    const returnedAlternateVerticals = filterVariableLength> 0 ? filterVariable.map((res:any)=>{
+    const returnedAlternateVerticals = filterVariableLength> 0 &&  isLoading===false ? filterVariable.map((res:any)=>{
       const verticalName = (res.verticalKey).toUpperCase();
       const verticalSlug = res.verticalKey;
       return(
@@ -90,8 +92,9 @@ export default function LocationResults(data :props){
       refLcation={refLcation}
     />;
   };
-  
+  if(isLoading===false){
   return (
+   
     <div className="flex">
       <div
         ref={refLcation}
@@ -100,7 +103,7 @@ export default function LocationResults(data :props){
           'w-full': !state.showMap,
         })}
         style={{ maxHeight: '580px' }}>
-        {state.mapLocations && state.mapLocations.length > 0 &&  ? (
+        {state.mapLocations && state.mapLocations.length > 0 && isLoading===false ? (
           <VerticalResultsDisplay
           results={entityResults}
           CardComponent={cardComponent}
@@ -121,5 +124,38 @@ export default function LocationResults(data :props){
       </div>
     </div>
   );
+}else{
+  return (
+   
+    <div className="flex">
+      <div
+        ref={refLcation}
+        className={classNames('overflow-y-auto sm:overflow-auto sm:border lg:w-1/4', {
+          hidden: state.showMap,
+          'w-full': !state.showMap,
+        })}
+        style={{ maxHeight: '580px' }}>
+        {state.mapLocations && state.mapLocations.length > 0 && isLoading===false ? (
+          <VerticalResultsDisplay
+          results={entityResults}
+          CardComponent={cardComponent}
+          {...(cardConfig && { cardConfig })}
+          customCssClasses={{ container: 'px-4 sm:px-0' }}
+        />
 
+        ) : state.noGymsMessage ? (
+          <div className="flex h-full items-center justify-center">
+            <span className="font-heading text-xl">{state.noGymsMessage}</span>
+          </div>
+        ) : (
+          null
+        )}
+      </div>
+      <div className={classNames('w-full xl:w-3/4', { hidden: screenSize !== 'xl' && !state.showMap })}>
+        {renderMap()}
+      </div>
+    </div>
+  );
+  
+}
 }
