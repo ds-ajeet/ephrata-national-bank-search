@@ -12,29 +12,22 @@ import "../index.css";
 import {
   SearchHeadlessProvider,
   provideHeadless,
-  HeadlessConfig,
-  SandboxEndpoints,
 } from "@yext/search-headless-react";
 import {
   SearchBar,
-  StandardCard,
-  VerticalResults,
   SpellCheck,
   ResultsCount,
   Pagination,
-  AlternativeVerticals,
   AppliedFilters,
-  DirectAnswer,
-  LocationBias
-} from "@yext/search-ui-react";
+  } from "@yext/search-ui-react";
 
-import { ArticlesCard } from '../components/cards/ArticlesCard';
+import DirectAnswer from "../components/DirectAnswer";
 import Navigation from '../components/Navigation';
-import PageLayout from "../components/PageLayout";
 import { answersHeadlessConfig } from '../config/answersHeadlessConfig';
 import Header from "../components/commons/Header";
 import Footer from "../components/commons/Footer";
 import { FaqCard } from "../components/cards/FaqCards";
+import VerticalResults from "../components/VerticalResults";
 
 export const config: TemplateConfig = {
     stream: {
@@ -137,8 +130,8 @@ console.log(_site,"_site");
             <SpellCheck />
             <ResultsCount />
             <AppliedFilters hiddenFields={['builtin.entityType']} />
-            <VerticalResults CardComponent={FaqCard} />
-            <LocationBias />
+            <VerticalResults displayAllOnNoResults={true} CardComponent={FaqCard} />
+            {/* <LocationBias /> */}
           </div>
           <Pagination />
         </div>

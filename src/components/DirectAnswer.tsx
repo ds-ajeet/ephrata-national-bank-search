@@ -3,6 +3,7 @@ import renderHighlightedValue from './utils/renderHighlightedValue';
 import classNames from 'classnames';
 import { ReactNode } from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
+import * as React from 'react';
 
 interface DirectAnswerProps {
   customCssClasses?: DirectAnswerCssClasses,

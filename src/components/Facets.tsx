@@ -1,4 +1,5 @@
 import { useSearchState, useSearchActions, DisplayableFacetOption } from '@yext/search-headless-react'
+import * as React from 'react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import Facet,{ FacetConfig, FacetCssClasses } from './Facet';
 import { Divider } from './StaticFilters';

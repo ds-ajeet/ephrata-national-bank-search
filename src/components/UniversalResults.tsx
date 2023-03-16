@@ -51,6 +51,7 @@ export default function UniversalResults({
   const resultsFromAllVerticals = useSearchState(state => state?.universal?.verticals) || [];
   // console.log(resultsFromAllVerticals,"resultsFromAllVerticals");
   const isLoading = useSearchState(state => state.searchStatus.isLoading);
+  console.log(isLoading,"isLoading");
   //  UseEffect - Starts  - Code to get Default Initial Search 
   const searchAction = useSearchActions();
   useEffect(() => {
@@ -59,8 +60,14 @@ export default function UniversalResults({
   }, [])
 
   // UseEffect - Ends  - Code to get Default Initial Search 
-  if (resultsFromAllVerticals.length === 0) {
-    return null;
+  if (isLoading === false && resultsFromAllVerticals.length === 0) {
+    return (
+      <>
+          <div className="mb-6 pb-6 mt-6 pt-6">
+            <p className="text-2xl font-bold">No results found</p>
+          </div>
+      </>
+    );
   }
 
   const resultsClassNames = classNames(cssClasses.container, {

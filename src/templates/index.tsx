@@ -17,8 +17,8 @@ import {
   SearchBar,
   SpellCheck,
   Pagination,
-  DirectAnswer,  
 } from "@yext/search-ui-react";
+import DirectAnswer from "../components/DirectAnswer";
 import { universalResultsConfig } from '../config/universalResultsConfig';
 import UniversalResults from '../components/UniversalResults';
 import Navigation from '../components/Navigation';

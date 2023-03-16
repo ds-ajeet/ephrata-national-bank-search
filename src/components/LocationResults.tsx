@@ -1,6 +1,5 @@
 import classNames from 'classnames';
 import { useContext, useEffect, useRef } from 'react';
-import AlternativeVerticals from './AlternativeVerticals';
 import { StandardCard } from './cards/StandardCard';
 import { LocationContext } from './LocationContext';
 import { LocationActionTypes } from './locationReducers';
@@ -23,6 +22,30 @@ export default function LocationResults(data :props){
   const { cardConfig } = data;
   const cardComponent = cardConfig?.CardComponent || StandardCard;
   // const newCardComponent = data.cardConfig ? data.cardConfig : StandardCard;
+  /**
+   * Code for Alternate Vertical - Starts
+   */
+  const aleternateVerticals = useSearchState(
+    (state) => state.vertical.noResults?.alternativeVerticals
+  );
+   const filterVariable = aleternateVerticals?.filter(filtredResulta => filtredResulta.resultsCount > 0) || [];
+    const filterVariableLength = filterVariable.length;
+    const returnedAlternateVerticals = filterVariableLength> 0 ? filterVariable.map((res:any)=>{
+      const verticalName = (res.verticalKey).toUpperCase();
+      const verticalSlug = res.verticalKey;
+      return(
+        <>
+          <p className="text-xl font-bold ">No result found in this vertical... Showing verticals related to this query</p>
+            <a href={'/'+verticalSlug} className="text-2xl font-semibold">
+              {verticalName}
+            </a>
+        </>
+      )
+  }) : <p>OOps ! ..No results found in any vertical for this query.</p>
+
+  /**
+   * Code for Alternate Vertical - Ends
+   */
   const refLcation = useRef<HTMLDivElement>(null);
   useEffect(() => {
     const mapLocations: MapLocationData[] = [];
@@ -77,7 +100,7 @@ export default function LocationResults(data :props){
           'w-full': !state.showMap,
         })}
         style={{ maxHeight: '580px' }}>
-        {state.mapLocations && state.mapLocations.length > 0 ? (
+        {state.mapLocations && state.mapLocations.length > 0 &&  ? (
           <VerticalResultsDisplay
           results={entityResults}
           CardComponent={cardComponent}
@@ -90,22 +113,7 @@ export default function LocationResults(data :props){
             <span className="font-heading text-xl">{state.noGymsMessage}</span>
           </div>
         ) : (
-          <AlternativeVerticals
-            currentVerticalLabel="Locations"
-            verticalsConfig={[
-              { label: 'FAQs', verticalKey: 'faqs' },
-              { label: 'Events', verticalKey: 'events' },
-            ]}
-            cssCompositionMethod="assign"
-            customCssClasses={{
-              container: 'flex flex-col justify-between mb-4 p-4 shadow-sm',
-              noResultsText: 'text-lg font-heading pb-2',
-              categoriesText: 'font-body',
-              suggestions: 'pt-4 ',
-              suggestion: 'pb-4 text-gold font-heading',
-              allCategoriesLink: 'text-gold cursor-pointer hover:underline focus:underline',
-            }}
-          />
+          returnedAlternateVerticals
         )}
       </div>
       <div className={classNames('w-full xl:w-3/4', { hidden: screenSize !== 'xl' && !state.showMap })}>

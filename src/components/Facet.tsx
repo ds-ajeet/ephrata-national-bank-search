@@ -1,9 +1,10 @@
-import { useAnswersUtilities, DisplayableFacet, DisplayableFacetOption } from '@yext/search-headless-react'
+import { useSearchActions, DisplayableFacet, DisplayableFacetOption } from '@yext/search-headless-react'
 import { useState } from 'react';
 import useCollapse from 'react-collapsed';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import renderCheckboxOption, { CheckboxOptionCssClasses } from './utils/renderCheckboxOption';
-import { ReactComponent as DropdownIcon } from '../icons/chevron.svg';
+// import { ReactComponent as DropdownIcon } from '../icons/chevron.svg';
+import * as React from 'react';
 
 export type onFacetChangeFn = (fieldId: string, option: DisplayableFacetOption) => void
 
@@ -50,13 +51,13 @@ export default function Facet(props: FacetProps): JSX.Element {
     cssCompositionMethod 
   } = props;
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssclasses, cssCompositionMethod);
-  const answersUtilities = useAnswersUtilities();
+  const answersUtilities = useSearchActions();
   const hasSelectedFacet = !!facet.options.find(o => o.selected);
   const [ filterValue, setFilterValue ] = useState('');
   const { getCollapseProps, getToggleProps, isExpanded } = useCollapse({
     defaultExpanded: hasSelectedFacet || defaultExpanded
   });
-
+  
   cssClasses.labelIcon = cssClasses.labelIcon ?? '';
   const modifiedLabelIconCssClasses = isExpanded
     ? cssClasses.labelIcon
@@ -70,7 +71,7 @@ export default function Facet(props: FacetProps): JSX.Element {
     <fieldset>
       <button className={cssClasses.labelContainer} {...(collapsible ? getToggleProps() : {})}>
         <div className={cssClasses.label}>{label || facet.displayName}</div>
-        {collapsible && <DropdownIcon className={modifiedLabelIconCssClasses}/>}
+        {/* {collapsible && <DropdownIcon className={modifiedLabelIconCssClasses}/>} */}
       </button>
       <div {...(collapsible ? getCollapseProps() : {})}>
         {searchable 

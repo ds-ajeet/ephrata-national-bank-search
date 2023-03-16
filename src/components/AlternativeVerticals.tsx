@@ -3,6 +3,7 @@ import { ReactComponent as Star } from '../icons/star.svg';
 import { useSearchState, VerticalResults } from '@yext/search-headless-react';
 import { CompositionMethod, useComposedCssClasses } from '../hooks/useComposedCssClasses';
 import classNames from 'classnames';
+import * as React from 'react';
 // import { Link } from 'react-router-dom';
 
 interface AlternativeVerticalsCssClasses {
@@ -64,6 +65,7 @@ export default function AlternativeVerticals ({
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
 
   const alternativeVerticals = useSearchState(state => state.vertical.noResults?.alternativeVerticals) || [];
+  
   const allResultsForVertical = useSearchState(state => state.vertical.noResults?.allResultsForVertical.results) || [];
   const query = useSearchState(state => state.query.mostRecentSearch);
 

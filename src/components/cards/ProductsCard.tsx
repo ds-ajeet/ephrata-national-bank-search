@@ -73,33 +73,16 @@ export function ProductsCard(props: StandardCardProps): JSX.Element {
   const Products: any = result.rawData;
   // console.log(Products, "Products");
   
-  let productName = Products.name; // Name of the products
-  let productDescription = Products.description;  // Description of the Products
-  let productPrice = Products.c_product_price; // Price of the Products
-  let productSpeed = Products.c_speed; // Speed of the Products
-
-
-
-
-  // TODO (cea2aj) Update this to render the ordinal once we get mocks from UX
-  function renderOrdinal(index: number) {
-    // return (
-    //   <div className={cssClasses.ordinal}>{index}</div>
-    // );
-    return null;
-  }
-
-  function renderTitle(title: string) {
-    return <div className={cssClasses.title}>{title}</div>
-  }
+  const productName = Products.name; // Name of the products
+  const produtSector = Products.c_sector;
+  const productPrice = Products.c_price;
 
   return (
     <>
         <div className={cssClasses.container}>
         <div>
           <h3 className={cssClasses.header}>{productName}</h3>
-          <p>{productSpeed}</p>
-          <p>{productDescription}</p>
+          <p>{produtSector}</p>
           <p>{productPrice}</p>
         </div>
         </div>
