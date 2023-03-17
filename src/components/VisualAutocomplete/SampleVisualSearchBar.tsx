@@ -2,6 +2,7 @@ import VisualSearchBar from './VisualSearchBar';
 import { Result } from '@yext/search-headless-react';
 import EntityPreviews from './EntityPreviews';
 import { universalResultsConfig } from '../../config/universalResultsConfig';
+import * as React from 'react';
 
 /**
  * This is an example of how to use the VisualSearchBar component.

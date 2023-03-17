@@ -5,7 +5,7 @@ import LocationSection from '../sections/LocationSection';
 import { ProductsCard } from '../components/cards/ProductsCard';
 
 export type UniversalResultsConfig = Record<string, VerticalConfig>;
-
+export const universallimit = 3;
 export const universalResultsConfig: UniversalResultsConfig = {
   locations: {
     SectionComponent: LocationSection,

@@ -70,11 +70,11 @@ function limit(string = ' ', limit = 0) {
   }
     ProductResultsObj = ProductResultsObj.map((res: any) => {
         console.log(res,"Rawdata");
-         let productName = res.name;
-         let productLandingPageUrl = res.landingPageUrl;
-         let productDescription = res.description;
-         let productSpeed = res.c_speed;
-         let productPrice = res.c_product_price;
+         const productName = res.name;
+         const productLandingPageUrl = res.landingPageUrl;
+         const productDescription = res.description;
+         const productSpeed = res.c_speed;
+         const productPrice = res.c_product_price;
         //    landingPageUrl
         // console.log(res, "res");
         return (

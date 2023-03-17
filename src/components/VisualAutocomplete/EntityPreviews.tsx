@@ -1,4 +1,5 @@
 import { Result, VerticalResults, UniversalLimit } from '@yext/search-headless-react';
+import { universallimit } from '../../config/universalResultsConfig';
 import { isValidElement, ReactNode } from 'react';
 import recursivelyMapChildren from '../utils/recursivelyMapChildren';
 
@@ -67,16 +68,16 @@ export function calculateRestrictVerticals(children: ReactNode): string[] {
  * Calculates the universalLimit query param from a ReactNode containing EntityPreviews.
  */
 export function calculateUniversalLimit(children: ReactNode): UniversalLimit {
-  const universalLimit: Record<string, number | null> = {};
+  const universallimit: Record<string, number | null> = {};
   recursivelyMapChildren(children, c => {
     if (isValidElement(c) && c.type === EntityPreviews) {
       const { verticalKey, limit } = c.props as EntityPreviewsProps;
-      universalLimit[verticalKey] = limit || null;
+      universallimit[verticalKey] = limit || null;
     }
     return c;
   });
-  return Object.keys(universalLimit).reduce<UniversalLimit>((limitWithDefaults, verticalKey) => {
-    limitWithDefaults[verticalKey] = universalLimit[verticalKey] ?? 5;
+  return Object.keys(universallimit).reduce<UniversalLimit>((limitWithDefaults, verticalKey) => {
+    limitWithDefaults[verticalKey] = universallimit[verticalKey] ?? 5;
     return limitWithDefaults;
   }, {})
 }

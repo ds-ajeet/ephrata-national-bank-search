@@ -144,8 +144,9 @@ export function LocationCard(props: LocationCardProps): JSX.Element {
     <div
       id={"result-" + location.id}
       className={cssClasses.container}
-      onMouseOver={() => setHoveredLocation()}
-      onMouseLeave={() => clearHoveredLocation()}>
+      // onMouseOver={() => setHoveredLocation()}
+      // onMouseLeave={() => clearHoveredLocation()}
+      >
       <div className={cssClasses.header}>
         {/* {configuration.showOrdinal && result.index && renderOrdinal(result.index)} */}
         {renderTitle(location.name || '')}

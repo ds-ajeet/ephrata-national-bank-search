@@ -7,6 +7,7 @@ import { useSearchActions, useSearchState } from '@yext/search-headless-react';
 import { universalResultsConfig } from '../config/universalResultsConfig';
 
 import * as React from 'react';
+import usePageSetupEffect from '../hooks/usePageSetupEffect';
 
 
 
@@ -58,17 +59,16 @@ interface NavigationProps {
 }
 
 export default function Navigation({ customCssClasses, cssCompositionMethod }: NavigationProps) {
-
+  // const verticalKey = "faqs"
+  // usePageSetupEffect(verticalKey, 6);
   // Query - Starts
 const[navparmam,setNavParam]=useState('');
-let SearchQuery: any = useSearchState(state => state.query.input);
-// console.log(SearchQuery,"SearchQuery");
-// const queryString: any = window.location.search;
-// let urlParams: any = new URLSearchParams(queryString);
+const SearchQuery: any = useSearchState(state => state.query.input);
+
 
 function getQueryParam(){
   const queryString: any = window.location.search;
-  let urlParams: any = new URLSearchParams(queryString);
+  const urlParams: any = new URLSearchParams(queryString);
   const product = urlParams.get('query');
   return product;
 }    
@@ -109,11 +109,11 @@ useEffect(() => {
 
 
 function updateParam(latestUserInput: any) {
-  var paramValue = latestUserInput; // Replace with your updated value
-  var searchParams = new URLSearchParams(window.location.search);
+  const paramValue = latestUserInput; // Replace with your updated value
+  const searchParams = new URLSearchParams(window.location.search);
   searchParams.set('query', paramValue);
-  var newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + searchParams.toString();
-  console.log(newUrl,"newUrl");
+  const newUrl = window.location.protocol + "//" + window.location.host + window.location.pathname + '?' + searchParams.toString();
+  
   window.history.replaceState({}, '', newUrl);
 }
 
@@ -128,7 +128,7 @@ function updateParam(latestUserInput: any) {
 
   // Default Search Code - Ends
 
-  let links = [
+  const links = [
     {
       to: '/',
       label: 'All'
@@ -141,7 +141,12 @@ function updateParam(latestUserInput: any) {
 
   const cssClasses = useComposedCssClasses(builtInCssClasses, customCssClasses, cssCompositionMethod);
   const currentVertical = useSearchState(state => state.vertical.verticalKey);
-
+  if(currentVertical==="faqs"){
+    usePageSetupEffect(currentVertical, 6);
+  }else if(currentVertical==="insurances"){
+    usePageSetupEffect(currentVertical, 2);
+  }
+  
   // Close the menu when clicking the document
   const [menuOpen, setMenuOpen] = useState<boolean>(false);
   const menuRef = useRef<HTMLButtonElement>(null);

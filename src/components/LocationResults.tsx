@@ -5,7 +5,7 @@ import { LocationContext } from './LocationContext';
 import { LocationActionTypes } from './locationReducers';
 import { MapLocationData } from './mapbox/Mapbox';
 import { VerticalResultsDisplay } from './VerticalResults';
-import MapGoogle from "./mapbox/MapGoogle";
+import {GoogleMaps} from "./mapbox/MapGoogle";
 import * as React from 'react';
 import { Result, useSearchState } from '@yext/search-headless-react';
 import { CardConfig } from '../models/cardComponent';
@@ -83,7 +83,7 @@ export default function LocationResults(data :props){
   const renderMap = () => {
     if (!state.mapLocations) return null;
 
-    return <MapGoogle
+    return <GoogleMaps
       apiKey={googleMapsConfig.googleMapsApiKey}
       centerLatitude={googleMapsConfig.centerLatitude}
       centerLongitude={googleMapsConfig.centerLongitude}

@@ -32,6 +32,7 @@ import { ProductsCard } from "../components/cards/ProductsCard";
 import VerticalResults from "../components/VerticalResults";
 import DirectAnswer from "../components/DirectAnswer";
 import Facets from "../components/Facets";
+import NewPagination from "../components/commons/PaginationComponent";
 
 export const config: TemplateConfig = {
     stream: {
@@ -131,7 +132,7 @@ const {
             <VerticalResults displayAllOnNoResults={true} CardComponent={ProductsCard} />
             {/* <LocationBias /> */}
           </div>
-          <Pagination />
+          <NewPagination/>
         </div>
       </SearchHeadlessProvider>
       <Footer houseLender={_site.c_housingLender} office={_site.c_office} />
