@@ -40,7 +40,7 @@
 
 
 body {
-  @apply font-normal font-fontMyriadRegular text-sm lg:text-base min-h-[100vh];
+  @apply font-normal font-fontMyriadRegular text-sm lg:text-base min-h-[100vh] bg-bodyBG;
 }
 body.menu-opened {
   @apply overflow-hidden lg:overflow-auto;
@@ -94,7 +94,7 @@ h5 {
 }
 
 .button {
-  @apply inline-flex align-top justify-center items-center bg-white border border-black text-sm font-normal px-[1.125rem] py-3.5 h-12 border-b-[3px] hover:bg-black hover:text-white transition-all duration-300 hover:no-underline;
+  @apply inline-flex align-top w-full justify-center items-center bg-primaryBlue text-white text-base font-normal font-fontMyriadRegular px-[1.125rem] py-3.5 h-10 transition-all duration-300 hover:no-underline hover:bg-white hover:text-primaryBlue hover:border border-primaryBlue;
 }
 
 .centered-container {
@@ -181,7 +181,7 @@ h5 {
 
 /* Lower-bar Start */
 .lower-bar .header-logo{
-  @apply max-w-[21.375rem] my-2.5;
+  @apply max-w-[18.125rem] lg:max-w-[21.375rem] ml-5 lg:ml-0 my-2.5;
 }
 /* nav.primary-navigation{
   @apply absolute lg:static top-0 left-0 z-[100] right-0 bg-white lg:bg-transparent -translate-y-[580px] lg:translate-y-0 transition-all duration-700 ease-in-out;
@@ -191,12 +191,12 @@ nav.primary-navigation.open{
 } */
 
 nav.primary-navigation{
-  transition: all 0.3s ease-in-out;
-  @apply bg-white lg:bg-transparent max-h-full h-0 hidden lg:block lg:h-full overflow-auto;
+  /* transition: all 0.3s ease-in-out; */
+  @apply bg-white lg:bg-transparent max-h-0 lg:max-h-full overflow-hidden transition-all duration-700 ease-in-out;
 }
 nav.primary-navigation.open{
-  transition: all 0.3s ease-in-out;
-  @apply bg-white lg:bg-transparent h-full block;
+  /* transition: all 0.3s ease-in-out; */
+  @apply bg-white lg:bg-transparent max-h-[37.5rem] transition-all duration-700 ease-in-out;
 }
 
 
@@ -207,10 +207,25 @@ nav.primary-navigation ul li{
   @apply flex items-center hover:bg-white;
 }
 nav.primary-navigation ul li a{
-  @apply text-lg leading-[1.125rem] font-semibold font-fontMyriadCondensed text-primaryBlue lg:text-white px-5 py-6 hover:text-primaryBlue;
+  @apply text-lg leading-[1.125rem] w-full font-semibold font-fontMyriadCondensed text-primaryBlue lg:text-white px-5 py-4 lg:py-6 hover:text-primaryBlue;
 }
 
 /* Lower-bar End */
+
+/* Mobile Callout Buttons */
+
+.mobile-callout ul.mobile-callout-navigation{
+  @apply table w-full pt-0.5;
+}
+ul.mobile-callout-navigation li{
+  @apply table-cell text-center w-2/4 odd:pr-px even:pl-px;
+}
+ul.mobile-callout-navigation li a{
+  @apply text-white text-2xl leading-6 font-fontMyriadCondensed font-semibold pt-5 pb-4 bg-primaryRed hover:bg-topbarHoverBG;
+}
+
+
+/* Mobile Callout Buttons */
 
 /* Header - Ends */
 
@@ -229,7 +244,7 @@ nav.primary-navigation ul li a{
   @apply flex justify-center lg:justify-start;
 }
 .footer-nav-links ul li a{
-  @apply text-white underline;
+  @apply text-white underline hover:text-footerBorder;
 }
 .legal,
 .social, 
@@ -240,9 +255,9 @@ nav.primary-navigation ul li a{
   @apply text-center lg:text-left;
 }
 
-/* .footer-section .social{
-  @apply flex flex-col justify-end;
-} */
+.footer-section .social svg:hover path{
+  @apply fill-footerBorder;
+}
 .social .social-headline{
   @apply text-4xl font-bold font-fontMyriadBold text-center lg:text-right mb-4;
 }
@@ -261,7 +276,7 @@ nav.primary-navigation ul li a{
   @apply flex items-center justify-center;
 }
 .corporate-address .corporate-location-phone a{
-  @apply text-white;
+  @apply text-white hover:text-footerBorder;
 }
 .footer-section .powered-by-title{
   @apply flex justify-center lg:justify-end gap-1.5 mt-4;
@@ -270,18 +285,99 @@ nav.primary-navigation ul li a{
   @apply text-white font-fontMyriadRegular text-xs font-normal;
 }
 
+.footer-section .powered-by-title a:hover,
+.footer-section .powered-by-title a:hover + a svg path{
+  @apply fill-footerBorder text-footerBorder;
+}
+
 /* Footer Css - Ends  */
+
+/* Main Section Start */
+
+.locator-wrapper{
+  @apply flex flex-col gap-y-5 md:flex-row mb-4;
+}
+
+.locator-wrapper .location-box{
+  @apply w-full md:w-[21rem] lg:w-[25rem] max-h-full md:max-h-[27.5rem] lg:max-h-[31.5rem];
+}
+.locator-wrapper .map-box{
+  @apply w-full md:w-[calc(100%_-_21rem)] lg:w-[calc(100%_-_25rem)] md:pl-4;
+}
+
+.location-box .result-card{
+  @apply flex flex-col justify-between border border-primaryBlue mb-4 rounded last:mb-0 p-4 hover:bg-resultCardHover;
+}
+
+.result-card .location-name h2{
+  @apply flex text-lg font-normal text-primaryBlue mb-3 cursor-pointer;
+}
+.result-card .location-address{
+  @apply flex gap-3 mb-3;
+}
+.location-address .address-content{
+  @apply text-base font-normal text-primaryBlue;
+}
+.result-card .location-phone{
+  @apply flex gap-3 mb-3;
+}
+.location-phone .phone-content a{
+  @apply text-base font-normal text-primaryBlue hover:underline;
+}
+
+.result-card .location-CTA{
+  @apply text-center;
+}
+
+.result-card .location-CTA .button{
+  @apply lg:w-3/4;
+}
+
+.vertical-navigation ul{
+  @apply flex font-medium mb-6 bg-footerBorder;
+}
+
+.vertical-navigation li.vertical-navigation-item{
+  @apply px-5 py-4;
+}
+
+.markerContent{
+  @apply w-[18.875rem];
+}
+.markerContent .button-bx{
+  @apply flex flex-col xs:flex-row w-full;
+}
+
+.markerContent .button-bx a{ 
+  @apply w-full xs:w-2/4 text-center px-4 py-2 even:mt-2.5 xs:even:mt-0 xs:even:ml-2.5 bg-primaryBlue text-white border border-primaryBlue hover:bg-white hover:text-primaryBlue transition-all duration-300;
+}
+.gm-style-iw-d{
+  @apply !max-h-[290px];
+}
+
+.gm-style-iw-d + button.gm-ui-hover-effect{
+  @apply !top-0 !right-1.5;
+}
+.gm-style-iw-d + button.gm-ui-hover-effect span{
+  @apply !w-5 !h-5;
+}
+
+.gm-style-iw-c{
+  @apply !max-h-[270px] !max-w-full;
+}
+
+
+/* Main Section End */
 
 .upperLabelLinks {
   margin-left: 500px;
 }
 
 .labelLinksLower {
-  background-color: #004990;
+  @apply bg-primaryBlue;
 }
 
-.FooterDiv {
-  /* #004990 */
+.FooterDiv {  
   background-color: #004990;
 }
 
@@ -316,5 +412,10 @@ nav.primary-navigation ul li a{
 @media screen and (max-width: 1024px){
   .footer-section .legal img{
     @apply mx-auto;
+  }
+}
+@media screen and (max-width: 420px){
+  .social ul{
+    @apply w-full justify-between;
   }
 }

@@ -29,6 +29,7 @@ module.exports = {
       footerBorder: "#a8d6e2",
       topbarHoverBG: "#800b28",
       submenuBorder: "#80a3c6",
+      resultCardHover: "#f4f5f7",
       // primary: "var(--primary-color, #2563eb)",
       // "primary-light": "var(--primary-color-light, #dbeafe)",
       // "primary-dark": "var(--primary-color-dark, #1e40af)",
@@ -44,7 +45,7 @@ module.exports = {
     extend: {
       backgroundImage: {
         // plus: "url('images/plus.svg')",
-        // minus: "url('images/minus.svg')",       
+        bodyBG: "url('images/epnb-background.png')",       
       },
       borderRadius: {
         cta: "var(--cta-border-radius, 1rem)",
