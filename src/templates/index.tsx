@@ -111,8 +111,11 @@ const IndexPage: Template<TemplateRenderProps> = ({
  const {
   _site
  } = document
+
  
-// let headerProps = _site.c_header_links;
+
+
+
 
 
 
