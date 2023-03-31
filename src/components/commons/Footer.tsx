@@ -6,26 +6,28 @@ import { SvgIcons } from "../../SvgIcon";
 type props = {
   houseLender?: any;
   office?: any;
+  houseLendermenu?: any;
+  houseCopyRight?:any;
 };
 
 export default function Footer(data: props) {
   // Variables for House Lending Sections
   const houseLenderData = data.houseLender;
-  const houseLenderHeading = houseLenderData.heading;
-  const houseLenderCopyrightText = houseLenderData.copyrightText;
-  const houseLenderSubMenus = houseLenderData.otherMenus.map((res: any) => {
+  // const houseLenderHeading = houseLenderData.heading;
+  const houseLenderCopyrightText = data.houseCopyRight;
+  const houseLenderSubMenus = data.houseLendermenu.c_footerNavigation.map((res: any) => {
     return (
       <>
-        <a href={res.lendingLink}>{res.lendingLabel} | </a>
+        <a href={res.link}>{res.label} | </a>
       </>
     );
   });
   // Variables for House Lending Sections
   // Variables for Office data
   const officeData = data.office;
-  const officeHeading = officeData.heading;
+  const officeHeading = officeData.office;
   const officeLocation = officeData.address;
-  const officeNumber = officeData.phoneNumber;
+  // const officeNumber = officeData.phoneNumber;
 
   const [isSmallScreen, setIsSmallScreen] = React.useState(false);
   React.useEffect(() => {
@@ -62,12 +64,10 @@ export default function Footer(data: props) {
                 height={"70"}
                 width={"70"}
               />
-              <h3>{houseLenderHeading}</h3>
+              <h3>{houseLenderData}</h3>
               <div className="footer-nav-links">
                 <nav>
-                  <ul>
-                    <li>{houseLenderSubMenus}</li>
-                  </ul>
+                  <ul><li>{houseLenderSubMenus}</li></ul>
                 </nav>
               </div>
               <p>{houseLenderCopyrightText}</p>
@@ -87,14 +87,12 @@ export default function Footer(data: props) {
                 </div>
                 <div className="corporate-location-phone">
                   <span>Toll Free :</span>
-                  <a href={"tel:" + officeNumber}>{officeNumber}</a>
+                  <a href={"tel:" + (877773 - 6605)}>(877) 773-6605</a>
                 </div>
               </div>
             </div>
             <div className="social order-1">
-              <h6 className="social-headline">
-                Connect with us
-              </h6>
+              <h6 className="social-headline">Connect with us</h6>
               <div className="flex justify-center lg:justify-end">
                 <ul className="flex items-center gap-5">
                   <li>
@@ -104,45 +102,29 @@ export default function Footer(data: props) {
                   </li>
 
                   <li>
-                    <a
-                      target="_blank"
-                      href="#"
-                      className=""
-                    >
-                     {SvgIcons.twitter}
+                    <a target="_blank" href="#" className="">
+                      {SvgIcons.twitter}
                     </a>
                   </li>
 
                   <li>
                     <a target="_blank" href="#" className=" text-gray-600">
-                    {SvgIcons.linkedin}
+                      {SvgIcons.linkedin}
                     </a>
                   </li>
                   <li>
-                    <a
-                      target="_blank"
-                      href="#"
-                      className=""
-                    >
-                       {SvgIcons.instagram}
+                    <a target="_blank" href="#" className="">
+                      {SvgIcons.instagram}
                     </a>
                   </li>
                   <li>
-                    <a
-                      target="_blank"
-                      href="#"
-                      className=""
-                    >
-                       {SvgIcons.youTube}
+                    <a target="_blank" href="#" className="">
+                      {SvgIcons.youTube}
                     </a>
                   </li>
                   <li>
-                    <a
-                      target="_blank"
-                      href="#"
-                      className=""
-                    >
-                       {SvgIcons.pinterest}
+                    <a target="_blank" href="#" className="">
+                      {SvgIcons.pinterest}
                     </a>
                   </li>
                 </ul>

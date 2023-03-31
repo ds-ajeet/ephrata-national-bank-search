@@ -31,13 +31,13 @@ import NewPagination from "../components/commons/PaginationComponent";
 
 export const config: TemplateConfig = {
   stream: {
-    $id: "header-and-footer",
+    $id: "global-Data",
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
     fields: ["id", "uid", "meta", "name"],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityIds: ["header-and-footer"],
+      entityIds: ["global-Data"],
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -99,7 +99,7 @@ const ArticlesPage: Template<TemplateRenderProps> = ({
   document,
 }) => {
   const { _site } = document;
-  console.log(_site, "_site");
+  // console.log(_site, "_site");
   
   // let headerProps = _site.c_header_links;
   // console.log(_site.c_useful_links.headerLinksHeading,"Sites");
@@ -109,13 +109,10 @@ const ArticlesPage: Template<TemplateRenderProps> = ({
 
   return (
     <>
-      <Header
-        upperHeaderLinks={_site.c_upperPart}
-        lowerHeaderLinks={_site.c_lowerPart}
-      />
+       <Header upperHeaderLinks={_site.c_headerCta} lowerHeaderLinks={_site.c_headermenus.cta}/>
       <SearchHeadlessProvider searcher={searcher}>
         <div className="px-4 py-8">
-          <div className="mx-auto flex max-w-5xl flex-col">
+          <div className="mx-auto flex max-w-[71.25rem] flex-col">
             <SearchBar placeholder="Search..." />
             <Navigation />
             <DirectAnswer />
@@ -131,7 +128,7 @@ const ArticlesPage: Template<TemplateRenderProps> = ({
           <NewPagination />
         </div>
       </SearchHeadlessProvider>
-      <Footer houseLender={_site.c_housingLender} office={_site.c_office} />
+      <Footer houseLender={_site.c_footerMember} houseLendermenu={_site} houseCopyRight={_site.c_footerCopyRight} office={_site.c_corporateOffice} />
     </>
   );
 };

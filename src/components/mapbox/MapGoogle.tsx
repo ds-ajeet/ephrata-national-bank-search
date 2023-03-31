@@ -196,6 +196,8 @@ function UnwrappedGoogleMaps({
       label: {
         text: String(markerLabel),
         color: "#fff",
+        fontWeight:"bold",
+        
       },
     });
 
@@ -353,7 +355,7 @@ function UnwrappedGoogleMaps({
   infoWindow.addListener("closeclick", () => {
     infoWindow.close();
     removeActiveGrid();
-    console.log(searchZoom, "searchZoom2");
+    // console.log(searchZoom, "searchZoom2");
     map?.setZoom(8);
     map?.fitBounds(bounds);
 

@@ -1,17 +1,25 @@
 {
   "$id": "site-entity",
   "filter": {
-    "entityIds": ["header-and-footer"]
+    "entityIds": ["global-Data"]
   },
   "source": "knowledgeGraph",
   "fields": [
     "id",
     "uid",
     "meta",
-    "c_upperPart",
-    "c_lowerPart",
-    "c_housingLender",
-    "c_office"
+    "c_headerCta",
+    "c_headermenus",
+    "c_footerHouse",
+    "c_footerMember",
+
+    "c_footerCopyRight",
+    "c_footerEnb",
+    "c_footerCountact",
+    "c_footerNavigation",
+    "c_footerSocial",
+    "c_corporateOffice"
+    
   ],
   "localization": {
     "locales": ["en"]

@@ -75,15 +75,23 @@ export function ProductsCard(props: StandardCardProps): JSX.Element {
   
   const productName = Products.name; // Name of the products
   const produtSector = Products.c_sector;
-  const productPrice = Products.c_price;
+  const productPrice = Products.c_price.map((res:any)=>{
+    return(
+      <><p>{res.currencyCode}</p>
+      <p>{res.value}</p></>
+    )
+  });
+  // console.log(productPrice, "Products");
 
   return (
     <>
         <div className={cssClasses.container}>
         <div>
+         
           <h3 className={cssClasses.header}>{productName}</h3>
-          <p>{produtSector}</p>
           <p>{productPrice}</p>
+          <p>{produtSector}</p>
+         
         </div>
         </div>
     </>

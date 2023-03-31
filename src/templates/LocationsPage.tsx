@@ -40,13 +40,14 @@ import PageLayout from "../components/PageLayout";
 import { answersHeadlessConfig } from '../config/answersHeadlessConfig';
 import Header from "../components/commons/Header";
 import Footer from "../components/commons/Footer";
+// import Footer from "../components/footer";
 import { LocationCard } from "../components/cards/LocationCard";
 import LocationResults from "../components/LocationResults";
 import { LocationProvider } from "../components/LocationContext";
 
 export const config: TemplateConfig = {
   stream: {
-    $id: "header-and-footer",
+    $id: "global-Data",
     // Specifies the exact data that each generated document will contain. This data is passed in
     // directly as props to the default exported function.
     fields: [
@@ -57,7 +58,7 @@ export const config: TemplateConfig = {
     ],
     // Defines the scope of entities that qualify for this stream.
     filter: {
-      entityIds: ["header-and-footer"] 
+      entityIds: ["global-Data"] 
     },
     // The entity language profiles that documents will be generated for.
     localization: {
@@ -139,7 +140,7 @@ const {
   
   return (
     <>
-      <Header upperHeaderLinks={_site.c_upperPart} lowerHeaderLinks={_site.c_lowerPart}/>
+      <Header upperHeaderLinks={_site.c_headerCta} lowerHeaderLinks={_site.c_headermenus.cta}/>
       <SearchHeadlessProvider searcher={searcher}>
       <LocationProvider>
         <div className="py-4 xs:py-8">
@@ -161,7 +162,8 @@ const {
         </div>
         </LocationProvider>
       </SearchHeadlessProvider>
-      <Footer houseLender={_site.c_housingLender} office={_site.c_office} />
+      <Footer houseLender={_site.c_footerMember} houseLendermenu={_site} houseCopyRight={_site.c_footerCopyRight} office={_site.c_corporateOffice} />
+      {/* <Footer _site={_site} houseLender={_site.c_housingLender} /> */}
     </>
   );
 

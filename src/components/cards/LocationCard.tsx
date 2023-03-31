@@ -128,9 +128,13 @@ export function LocationCard(props: LocationCardProps): JSX.Element {
   const conversionTracker = provideConversionTrackingAnalytics();
 
   const searchAnalytics = provideSearchAnalytics({
-    experienceKey: "prezzo-answer-experience",
+    // experienceKey: "prezzo-answer-experience",
+    // experienceVersion: "PRODUCTION",
+    // businessId: 3180300, // this comes from the url of your Yext account
+
+    experienceKey: "ephrata-national-bank",
     experienceVersion: "PRODUCTION",
-    businessId: 3180300, // this comes from the url of your Yext account
+    businessId: 3199850,
   });
 
   /**

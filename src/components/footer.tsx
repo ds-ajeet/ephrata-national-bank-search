@@ -10,7 +10,7 @@ type HeaderProps = {
 
 const Footer = ({ _site }: HeaderProps) => {
 
-  const linkDoms = _site.c_header_links.map((link:any) => (
+  const linkDoms = _site.c_footerNavigation.map((link:any) => (
     <div key={link.label}>
       <a href={link.uRL} target="_blank" rel="noreferrer">
         {link.label}

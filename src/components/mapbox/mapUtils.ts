@@ -58,7 +58,7 @@ export async function getGeocodeForQuery(query: string): Promise<GoogleLocation>
         return {};
       }
     } catch (error) {
-      console.log('Invalid Address');
+      // console.log('Invalid Address');
       return {};
     }
   } else {

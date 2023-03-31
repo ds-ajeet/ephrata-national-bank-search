@@ -78,7 +78,7 @@ const answersActions = useSearchActions();
 
 
 useEffect(() => {
-  console.log(getQueryParam(),"product")
+  // console.log(getQueryParam(),"product")
   if (getQueryParam() != null) {
     answersActions.setQuery(getQueryParam())
   }
@@ -144,7 +144,7 @@ function updateParam(latestUserInput: any) {
   if(currentVertical==="faqs"){
     usePageSetupEffect(currentVertical, 6);
   }else if(currentVertical==="insurances"){
-    usePageSetupEffect(currentVertical, 2);
+    usePageSetupEffect(currentVertical, 3);
   }
   
   // Close the menu when clicking the document

@@ -6,10 +6,10 @@ import {
 } from "@yext/search-headless-react";
 
 export let answersHeadlessConfig: HeadlessConfig = {
-  apiKey: "66b85f972b5954a58a3b0ca88a3e4290",
-  experienceKey: "ephrata-answer-search",
+  apiKey: "85f69c5d28211e425485a23fd439120f",
+  experienceKey: "ephrata-national-bank",
   locale: "en",
-  sessionTrackingEnabled: true,
+  // sessionTrackingEnabled: true,
   endpoints: {
     universalSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/query",
     verticalSearch: "https://liveapi-sandbox.yext.com/v2/accounts/me/answers/vertical/query",
